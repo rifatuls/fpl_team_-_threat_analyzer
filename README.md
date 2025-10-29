@@ -2,7 +2,7 @@
 # FPL Threat & Team Analyzer
 
 
-#### Video Demo: [Click here](https://youtu.be/VTOkxwiIpOg)
+#### Video Demo: [Click here](https://youtu.be/MZEuVGgExOg)
 This project is for CS50x by Mohd. Rifatul Maksud.
 A Python-based toolkit for analyzing Fantasy Premier League (FPL) player performance using public API data. It helps identify high-performing players ("Threats") and track your own team ("MadLads") based on customizable metrics like Points Per Game (PPG), recent form, ownership %, and price.
 
