@@ -18,7 +18,11 @@ FPL/
 ├── exclude_players_id.txt     # List of FPL IDs you want to avoid
 ├── requirements.txt           # Python dependencies
 ```
+## 🧼 Python Synopsis
 
+- Use `fpl_player_id_finder.py` to find IDs for new transfers or scouting, this will help you to develop the Team ID `txt` files
+- Run `fpl_threat.py` weekly to catch rising stars and avoid rank threats.
+- Use `fpl_team.py` to audit your squad and identify dead weight.
 ---
 
 ## 🔍 FPL Hypotheses & Metrics
@@ -53,30 +57,78 @@ cd fpl-analyzer
 pip install -r requirements.txt
 ```
 
-### 3. Prepare your team files
+### 3. Run the fpl_player_id_finder.py
+Before preparing your team files, use the `fpl_player_id_finder.py` script to look up FPL player IDs by name. This helps you build two critical lists:
 
-Create two text files in the same folder:
+- `team_players_id.txt`: Players you currently own
+- `exclude_players_id.txt`: Players you want to avoid or exclude from threat analysis
 
-#### `team_players_id.txt`
-List of FPL player IDs you currently own (one per line):
+#### 🔍 How to use the ID Finder
 
+Run the script:
+```bash
+python3 fpl_player_id_finder.py
 ```
-2
-3
-575
-500
-```
 
-#### `exclude_players_id.txt`
-List of FPL player IDs you want to avoid:
+```bash
+Enter player name to search: Gabriel
 
+Player Name  Player Code  Team Code  Match Score
+Gabriel            5          1          100
 ```
-5
-6
+Maybe, Add This `5` as Gabriels Player ID, into your desired section of `txt`. Either in `exclude_players_id.txt` or `team_player_id.txt`
+
+Repeat the porcess, untill you have all your desired team & exculiton list ready.
+
+### 4. Prepare Your Team Files
+Once you've identified player IDs - Create `team_players_id.txt` with one ID per line for players you own. Similarly, Create `exclude_players_id.txt` with one ID per line for players you want to ignore
+
+Example: `team_players_id.txt`
+```json
+11
+23
+45
 666
 ```
 
----
+Example: `exclude_players_id.txt`
+```json
+575
+427
+21
+```
+#### ❌ Why exclude players?
+FPL has team-based constraints and strategic considerations. You may want to exclude players from threat analysis for reasons like:
+
+> **Team quota limits -** 
+FPL only allows 3 players per club. If you already own Salah, Van Dijk, and Gakpo from Liverpool, you must exclude Ekitike even if he's performing well. 
+
+> **Rotation risk-**
+Players like Trossard or Alvarez may score well but aren't guaranteed starters.
+
+> **Injury or suspension-**
+Temporarily exclude players recovering from injury (e.g., Reece James).
+
+> **Personal strategy-**
+You may avoid high-ownership players to chase differential gains.
+
+#### **🧪 Example exclusions**
+_Player	Reason for exclusion
+Ekitike	Not top 3 from Liverpool; already own Salah, Van Dijk, Gakpo
+Alvarez	Rotation risk with Haaland; minutes not guaranteed
+Reece James	Injury-prone; unreliable availability
+Gyökeres	Owned already; don't want him flagged as a threat 
+Use these examples to guide your own exclusion logic._
+
+### 5. Run the Scripts
+```python
+python3 fpl_threat.py
+```
+
+```python
+python3 fpl_team.py
+```
+
 
 ## 🧠 Scripts Overview
 
@@ -90,6 +142,7 @@ Identifies high-performing players **not in your team** and tags them based on:
 - Position-specific thresholds
 
 Output is copied to clipboard and printed in terminal.
+Specially look for the **😈 Rank Killer** who are likely hurting your rank with consistency & high owerneship among other palyers overall.
 
 ### `fpl_team.py`
 
@@ -102,10 +155,26 @@ Analyzes your current team (from `team_players_id.txt`) and tags each player as:
 - 🦄 Unclassified
 
 Also includes recent form ratio (`L5GW`) and performance emojis.
+Keep and Eye on the **🤡 Underperformer** who are potentially hurting your rank unless they are a **🪦 Fodder**.
+
+
+#### 🧠 Emoji Guide
+
+| Emoji           | Meaning                                                                 |
+|-----------------|-------------------------------------------------------------------------|
+| 😈 Rank Killer   | High PxG + High Ownership — dangerous if you don’t own                 |
+| 🔪 Rank Threat   | Strong performer with growing ownership                                |
+| 👨🏼‍🎤 Rising Star | Low ownership but high recent form — potential differential            |
+| 👑 Star Performer| Your own player performing above expectations                          |
+| 🪦 Fodder        | Cheap player with low output — may be dead weight                      |
+| 🤡 Underperformer| Owned player not delivering returns                                    |
+| ☠️ High Ownership| Popular pick with low form — risky to follow crowd                     |
+| △ / ▽ / ☠︎       | Recent form trend: hot / steady / cold                                 |
+
 
 ### `fpl_player_id_finder.py`
 
-Fuzzy search tool to find FPL player IDs by name:
+Search tool to find FPL player IDs by name:
 
 ```bash
 python fpl_player_id_finder.py
@@ -152,16 +221,8 @@ arrow
 numpy
 pyperclip
 fuzzywuzzy
-python-Levenshtein
 ```
 
----
-
-## 🧼 Tips
-
-- Run `fpl_threat.py` weekly to catch rising stars and avoid rank threats.
-- Use `fpl_team.py` to audit your squad and identify dead weight.
-- Use `fpl_player_id_finder.py` to find IDs for new transfers or scouting, this will help you to develop the Team ID `txt` files
 
 ---
 
