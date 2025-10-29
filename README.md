@@ -3,7 +3,7 @@
 
 This project is for CS50x by Mohd. Rifatul Maksud.
 A Python-based toolkit for analyzing Fantasy Premier League (FPL) player performance using public API data. It helps identify high-performing players ("Threats") and track your own team ("MadLads aka Your Team Name") based on customizable metrics like Points Per Game (PPG), recent form, ownership %, and price.
-```
+
 
 ## 📌 Project Structure
 
@@ -164,3 +164,4 @@ fuzzywuzzy
 ## 📣 Credits
 
 Built by Rifatul Maksud — for FPL managers who want data-driven insights, emoji-powered tagging, and clipboard-ready output.
+```
