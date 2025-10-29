@@ -1,15 +1,17 @@
-```markdown
-⚽ FPL Threat & Team Analyzer
 
+# FPL Threat & Team Analyzer
+
+
+#### Video Demo: [Click here](https://www.youtube.com/watch?v=dQw4w9WgXcQ)
 This project is for CS50x by Mohd. Rifatul Maksud.
-A Python-based toolkit for analyzing Fantasy Premier League (FPL) player performance using public API data. It helps identify high-performing players ("Threats") and track your own team ("MadLads aka Your Team Name") based on customizable metrics like Points Per Game (PPG), recent form, ownership %, and price.
+A Python-based toolkit for analyzing Fantasy Premier League (FPL) player performance using public API data. It helps identify high-performing players ("Threats") and track your own team ("MadLads") based on customizable metrics like Points Per Game (PPG), recent form, ownership %, and price.
 
 
 ## 📌 Project Structure
 
 ```
 FPL/
-├── fpl_threat.py              # Identifies top-performing players not in your team
+├── fpl_threat.py              # Identifies top-performing players NOT in your team
 ├── fpl_team.py                # Evaluates your current team (MadLads)
 ├── fpl_player_id_finder.py    # Fuzzy search for player IDs by name
 ├── team_players_id.txt        # List of FPL IDs you currently own
@@ -26,10 +28,11 @@ This toolkit is built around key performance hypotheses:
 | Metric         | Description                                                                 |
 |----------------|-----------------------------------------------------------------------------|
 | `PPG`          | Points Per Game — overall average performance indicator                     |
-| `PxGLx`        | Last 4 Gameweeks average — recent form proxy (calculated from GW history)   |
+| `PxGLx`        | Last 5 Gameweeks average — recent form proxy (calculated from GW history)   |
 | `Ownership %`  | Popularity among FPL managers — used to assess risk and differential value  |
 | `£ Price`      | Current player cost — used to identify value picks or overpriced assets     |
-| `Team`         | Label assigned: `Threat`, `MadLads`, or `Excluded`                          |
+| `Team`         | Label assigned: `Threat`, `YouTeam`, or `Excluded`                          |
+| `Excluded`     | The players I Don't Like to Have, Irresepctive of Performance               |
 | `Player Profile` | Emoji-based tag based on performance, ownership, and price                |
 | `L5GW`         | Ratio of PxGLx to PPG, tagged with △ (hot), ▽ (steady), ☠︎ (cold)            |
 
@@ -40,8 +43,8 @@ This toolkit is built around key performance hypotheses:
 ### 1. Clone the repo
 
 ```bash
-git clone https://github.com/rifatuls/fpl_team_-_threat_analyzer.git
-cd fpl_team_-_threat_analyzer
+git clone https://github.com/yourusername/fpl-analyzer.git
+cd fpl-analyzer
 ```
 
 ### 2. Install dependencies
@@ -149,6 +152,7 @@ arrow
 numpy
 pyperclip
 fuzzywuzzy
+python-Levenshtein
 ```
 
 ---
@@ -157,11 +161,12 @@ fuzzywuzzy
 
 - Run `fpl_threat.py` weekly to catch rising stars and avoid rank threats.
 - Use `fpl_team.py` to audit your squad and identify dead weight.
-- Use `fpl_player_id_finder.py` to find IDs for new transfers or scouting.
+- Use `fpl_player_id_finder.py` to find IDs for new transfers or scouting, this will help you to develop the Team ID `txt` files
 
 ---
 
 ## 📣 Credits
 
-Built by Rifatul Maksud — for FPL managers who want data-driven insights, emoji-powered tagging, and clipboard-ready output.
-```
+Built by Rifatul Maksud — for CS50 & FPL managers who want data-driven insights, emoji-powered tagging, and clipboard-ready output. Data Driven & Clutter Free.
+
+---
